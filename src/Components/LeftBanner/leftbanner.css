@@ -1,0 +1,14 @@
+.leftBanner {
+    width: 117px;
+    height: 100vh;
+}
+
+.iconContainer {
+    height: 400px
+}
+
+.activityIcone {
+    width: 64px;
+    height: 64px;
+    border-radius: 6px;
+}
