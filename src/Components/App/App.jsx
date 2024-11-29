@@ -1,14 +1,14 @@
 import './App.css'
 import { TopBanner } from '../TopBanner/TopBanner';
-import { LeftBanner } from '../LeftBanner/LeftBanner';
+import { Dashboard } from '../Dashboard/Dashboard';
+
 function App() {
 
   return (
     <div className="app column ">
       <TopBanner />
-      <LeftBanner />
       <div className="content">
-        
+        <Dashboard />
       </div>
     </div>
   )

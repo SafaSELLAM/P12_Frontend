@@ -87,7 +87,7 @@
 }
 
 .bold {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 * {
@@ -107,6 +107,8 @@ p {
 
 body {
     margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
 }
 
 html {
