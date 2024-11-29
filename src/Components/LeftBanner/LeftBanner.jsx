@@ -1,19 +1,27 @@
-import mediatation from "../../assets/meditation.png"
-import swim from "../../assets/swim.png"
-import bike from "../../assets/bike.png"
-import weight from "../../assets/weight.png"
-import "./leftbanner.css"
+import mediatation from "../../assets/meditation.svg";
+import swim from "../../assets/swim.svg";
+import bike from "../../assets/bike.svg";
+import weight from "../../assets/weight.svg";
+import "./leftbanner.css";
 
-export const LeftBanner = () => {
-    return (
-        <div className="leftBanner  center backSecondary">
-            <div className="column around iconContainer">
-                <img src={mediatation} alt="meditation icone" className="activityIcone backTertiary" />
-                <img src={swim} alt="swimming icone" className="activityIcone backTertiary" />
-                <img src={bike} alt="bike icone" className="activityIcone backTertiary" />
-                <img src={weight} alt="weight icone" className="activityIcone backTertiary" />
-            </div>
+const icons = [
+    { src: mediatation, alt: "meditation icon" },
+    { src: swim, alt: "swimming icon" },
+    { src: bike, alt: "bike icon" },
+    { src: weight, alt: "weight icon" }
+];
 
+export const LeftBanner = () => (
+    <div className="leftBanner center backSecondary">
+        <div className="column around iconContainer">
+            {icons.map((icon, index) => (
+                <img
+                    key={index}
+                    src={icon.src}
+                    alt={icon.alt}
+                    className="activityIcone backTertiary"
+                />
+            ))}
         </div>
-    )
-}
+    </div>
+);
