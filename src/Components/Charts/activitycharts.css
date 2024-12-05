@@ -1,0 +1,14 @@
+.graphsContainer {
+    position: relative;
+    width: 90%;
+}
+
+.activityTooltip {
+    background: #e60000;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    height: 70px;
+    text-align: center;
+
+}
