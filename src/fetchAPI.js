@@ -1,47 +1,38 @@
-import { USER_MAIN_DATA } from "./Mockdatas/mockdatas.js";
-const API_BASE_URL = 'http://localhost:3000/user';
-import { UserModel } from "./Models/UserModel.js";
+import { USER_MAIN_DATA, USER_ACTIVITY } from "./Mockdatas/mockdatas.js";
+import { DataModel } from "./Models/DataModel.js";
 /**
+ 
+*/
 
- */
-export const getUserById = async (userId) => {
-    const useMock = Boolean(Number(import.meta.env.VITE_APP_USE_MOCK))
+const API_BASE_URL = 'http://localhost:3000/user';
+const SHOULD_USE_MOCK = Boolean(Number(import.meta.env.VITE_APP_USE_MOCK));
 
-    if (useMock) {
-        console.log('use mock datas');
-        const userData = USER_MAIN_DATA.find(user => user.id === userId);
-
-        if (!userData) {
-            throw new Error(`user with id  ${userId} not found.`);
-        }
-        return new UserModel({
-            id: userData.id,
-            firstName: userData.userInfos.firstName,
-            lastName: userData.userInfos.lastName,
-            age: userData.userInfos.age,
-            score: userData.score || userData.todayScore,
-            keyData: userData.keyData
-        });
-    } else {
-        console.log('Using real API');
-        try {
-            const response = await fetch(`${API_BASE_URL}/${userId}`);
-            if (!response.ok) {
-                throw new Error(`Error HTTP ! Status : ${response.status}`);
-            }
-            const data = await response.json();
-
-            return new UserModel({
-                id: userData.id,
-                firstName: userData.userInfos.firstName,
-                lastName: userData.userInfos.lastName,
-                age: userData.userInfos.age,
-                score: userData.score || userData.todayScore,
-                keyData: userData.keyData
-            });
-        } catch (error) {
-            console.error('Error while fetching user datas:', error);
-            throw error;
-        }
+const fetchData = async (url, type) => {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Error HTTP ! Status : ${response.status}`);
+        const data = await response.json();
+        return new DataModel(data, type);
+    } catch (error) {
+        console.error(`Error while fetching ${type} data:`, error);
+        throw error;
     }
+};
+
+export const getUserById = async (userId) => {
+    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}`, 'user');
+
+    console.log('Using mock data');
+    const userData = USER_MAIN_DATA.find(user => user.id === userId);
+    if (!userData) throw new Error(`User with id ${userId} not found.`);
+    return new DataModel(userData, 'user');
+};
+
+export const getUserActivity = async (userId) => {
+    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}/activity`, 'activity');
+
+    console.log('Using activity mock data');
+    const activityData = USER_ACTIVITY.find(activity => activity.userId === userId);
+    if (!activityData) throw new Error(`Activity for user id ${userId} not found.`);
+    return new DataModel(activityData, 'activity');
 };
