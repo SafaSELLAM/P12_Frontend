@@ -1,9 +1,11 @@
 import { Aside } from "../Aside/Aside.jsx"
-import { Charts } from "../Charts/Charts.jsx"
+import { ActivityCharts } from "../Charts/ActivityCharts.jsx"
+import './content.css'
+
 export const Content = ({ userId }) => {
     return (
-        <div className="row">
-            <Charts />
+        <div className="row contentDashboard">
+            <ActivityCharts userId={userId} />
             <Aside userId={userId} />
         </div>
     )
