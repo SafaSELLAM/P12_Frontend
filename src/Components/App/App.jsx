@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="app column ">
       <TopBanner />
-      <div className="content">
+      <div className="content row">
         <Dashboard />
       </div>
     </div>

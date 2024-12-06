@@ -7,13 +7,13 @@ export const Dashboard = () => {
     const userId = Number(import.meta.env.VITE_APP_USERID)
 
     return (
-        <div className="row ">
+        <>
             <LeftBanner />
             <div className="dashboardContent">
                 <UserName userId={userId} />
                 <Content userId={userId} />
             </div>
-        </div>
+        </>
     );
 };
 
