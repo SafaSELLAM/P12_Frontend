@@ -1,5 +1,5 @@
 import { Aside } from "../Aside/Aside.jsx"
-import { ActivityCharts } from "../Charts/ActivityCharts.jsx"
+import { ActivityCharts } from "../ActivityCharts/ActivityCharts.jsx"
 import './content.css'
 
 export const Content = ({ userId }) => {
