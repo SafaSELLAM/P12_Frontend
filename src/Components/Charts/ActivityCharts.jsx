@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 export const ActivityCharts = ({ userId }) => {
 
     const [activityData, setActivityData] = useState([])
+    const [minKilogram, setMinKilogram] = useState(0);
 
     useEffect(() => {
 
@@ -13,6 +14,7 @@ export const ActivityCharts = ({ userId }) => {
             try {
                 const data = await getUserActivity(userId)
                 setActivityData(data.sessions)
+                setMinKilogram(data.minWeight);
             } catch (error) {
                 console.error("error fetching activity data:", error)
             }
@@ -38,23 +40,53 @@ export const ActivityCharts = ({ userId }) => {
             <ResponsiveContainer width="100%" height={300}>
                 <BarChart
                     data={activityData}
-                    margin={{ top: 0, right: 0, left: 0, bottom: 10 }}
+                    margin={{ top: 50, right: 0, left: 0, bottom: 10 }}
                 >
+                    <rect
+                        x="0"
+                        y="0"
+                        width="100%"
+                        height="100%"
+                        fill="#f5f5f5"
+                    />
+                    <text
+                        x="15%"
+                        y="40"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        style={{ fontSize: 18, fontWeight: "bold" }}
+                    >
+                        Activité Quotidienne
+                    </text>
                     <CartesianGrid horizontal={true} vertical={false} strokeDasharray="3 3" />
-                    <Label value="Activité Physique" position="top" offset={0} fontSize={18} fontWeight="bold" />
                     <XAxis dataKey="day" />
                     <YAxis
                         yAxisId="kilogram"
                         orientation="right"
-                        tick={{ fontSize: 12 }}
+                        tick={{ fontSize: 15 }}
                         tickFormatter={(value) => `${value} kg`}
+                        domain={[minKilogram, "auto"]}
                     />
                     <YAxis
                         yAxisId="calories"
                         hide
                     />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Legend verticalAlign="topcenter" align="right" />
+                    <Tooltip
+                        content={<CustomTooltip />}
+
+                    />
+                    <Legend
+                        verticalAlign="top"
+                        align="right"
+                        iconType="circle"
+                        wrapperStyle={{
+                            padding: "20px",
+                            fontSize: "14px",
+                            color: "#333",
+                            marginBlockStart: "-50px",
+
+                        }}
+                    />
                     <Bar
                         yAxisId="kilogram"
                         dataKey="kilogram"

@@ -16,6 +16,7 @@ export class DataModel {
             case 'activity':
                 this.userId = data.userId;
                 this.sessions = this.formatActivitySessions(data.sessions || []);
+                this.minWeight = this.calculateMinWeight(this.sessions);
                 break;
 
             case 'averageSession':
@@ -48,6 +49,10 @@ export class DataModel {
             kilogram: session.kilogram,
             calories: session.calories,
         }));
+    }
+    calculateMinWeight(sessions) {
+        const minKilogram = Math.min(...sessions.map((session) => session.kilogram)) - 5;
+        return Math.floor(minKilogram);
     }
     formatAverageSessions(sessions) {
 
