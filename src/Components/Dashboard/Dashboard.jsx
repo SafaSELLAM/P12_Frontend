@@ -9,7 +9,7 @@ export const Dashboard = () => {
     return (
         <>
             <LeftBanner />
-            <div className="dashboardContent">
+            <div className="dashboardContent column">
                 <UserName userId={userId} />
                 <Content userId={userId} />
             </div>

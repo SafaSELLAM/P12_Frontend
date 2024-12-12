@@ -1,7 +1,16 @@
+header {
+    height: 91px;
+}
+
 header img {
-    width: 100px;
+    width: 178px;
+    margin-left: 22px;
 }
 
 .listHeader {
     width: 90%;
+}
+
+.menuLink {
+    font-size: 24px;
 }

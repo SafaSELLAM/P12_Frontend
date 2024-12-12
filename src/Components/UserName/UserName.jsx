@@ -34,7 +34,7 @@ export const UserName = ({ userId }) => {
 
     return (
         <div className="userContent column ">
-            <h1>Bonjour <span className="colorPrimary">{userName}</span></h1>
+            <h1 id="username">Bonjour <span className="colorPrimary">{userName}</span></h1>
             <p>Félicitation ! Vous avez explosé vos objectifs hier 👏 </p>
         </div>
     )

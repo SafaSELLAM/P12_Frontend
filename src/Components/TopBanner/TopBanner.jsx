@@ -9,7 +9,7 @@ export const TopBanner = () => (
         <ul className="noList row around listHeader">
             {menuItems.map((item, index) => (
                 <li key={index}>
-                    <a href="#" className="colorTertiary noDecoration">{item}</a>
+                    <a href="#" className="colorTertiary noDecoration menuLink">{item}</a>
                 </li>
             ))}
         </ul>
