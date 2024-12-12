@@ -3,6 +3,15 @@ import { getUserActivity } from '../../fetchAPI';
 import './activitycharts.css'
 import { useEffect, useState } from 'react';
 
+/**
+ * ActivityCharts component displays a bar chart for user activity data, including weight and calories burned.
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {number} props.userId - The ID of the user whose activity data is displayed.
+ * @returns {JSX.Element} A responsive bar chart with user activity data.
+ */
+
 export const ActivityCharts = ({ userId }) => {
 
     const [activityData, setActivityData] = useState([])
@@ -22,6 +31,14 @@ export const ActivityCharts = ({ userId }) => {
         fetchActivity();
     }, [userId])
 
+      /**
+     * Custom tooltip for displaying weight and calories burned when hovering over a bar.
+     *
+     * @param {Object} props - The tooltip properties.
+     * @param {boolean} props.active - Indicates if the tooltip is active.
+     * @param {Array<Object>} props.payload - The data payload for the tooltip.
+     * @returns {JSX.Element|null} A styled tooltip if active, or null otherwise.
+     */
     const CustomTooltip = ({ active, payload }) => {
         if (active) {
             return (
