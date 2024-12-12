@@ -1,4 +1,11 @@
-
+/**
+ * Represents the data model for all users different types of data.
+ * This class is used to standardize data fetched.
+ * 
+ * @class DataModel
+ * @param {Object} data - The raw data object fetched from API or mockData.
+ * @param {'user' | 'activity' | 'averageSession' | 'performance'} type - The type of data to be standardized.
+ */
 export class DataModel {
     constructor(data, type) {
         this.type = type;
@@ -33,7 +40,13 @@ export class DataModel {
                 throw new Error(`Unknown type: ${type}`);
         }
     }
-
+    /**
+     * Formats the key data of a user : calorie count, protein count, carbohydrate count and Lipid count.
+     * 
+     * @function formatKeyData
+     * @param {Object} keyData - An object containing the key data.
+     * @returns {Object} - The formatted key data with units ("kCal", "g").
+     */
     formatKeyData(keyData) {
         return {
             calorieCount: keyData.calorieCount + ' kCal',
@@ -42,7 +55,13 @@ export class DataModel {
             lipidCount: keyData.lipidCount + ' g',
         };
     }
-
+    /**
+     * Formats activity session data to include day, kilogram, and calories.
+     * 
+     * @function formatActivitySessions
+     * @param {Array<Object>} sessions - The raw session data from the API.
+     * @returns {Array<Object>} - The formatted session data (focus on changing dates into days).
+     */
     formatActivitySessions(sessions) {
         return sessions.map(session => ({
             day: new Date(session.day).getDate(),
@@ -50,10 +69,21 @@ export class DataModel {
             calories: session.calories,
         }));
     }
+    /**
+
+    * This function determines the smallest `kilogram` value from the session data, subtracts 5, 
+    * and rounds it down to the nearest integer using `Math.floor`.
+    * 
+    * @function calculateMinWeight
+    * @param {Array<Object>} sessions - An array of session objects.
+    * @returns {number} - The minimum weight adjusted by subtracting 5 and rounded down.
+    * 
+    */
     calculateMinWeight(sessions) {
         const minKilogram = Math.min(...sessions.map((session) => session.kilogram)) - 5;
         return Math.floor(minKilogram);
     }
+
     formatAverageSessions(sessions) {
 
     }
