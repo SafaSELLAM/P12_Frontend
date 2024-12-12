@@ -26,8 +26,8 @@ export const ActivityCharts = ({ userId }) => {
         if (active) {
             return (
                 <div className="activityTooltip column around">
-                    <p>{payload[0].value} kg</p>
-                    <p>{payload[1].value} kCal</p>
+                    <p>{payload[0].value}kg</p>
+                    <p>{payload[1].value}kCal</p>
                 </div>
             );
         }
@@ -64,7 +64,8 @@ export const ActivityCharts = ({ userId }) => {
                         yAxisId="kilogram"
                         orientation="right"
                         tick={{ fontSize: 15 }}
-                        tickFormatter={(value) => `${value} kg`}
+                        tickFormatter={(value) => `${value}kg`}
+                        tickCount={3}
                         domain={[minKilogram, "auto"]}
                     />
                     <YAxis
@@ -72,6 +73,7 @@ export const ActivityCharts = ({ userId }) => {
                         hide
                     />
                     <Tooltip
+                        cursor={{ fill: "#cccccc80" }}
                         content={<CustomTooltip />}
 
                     />
