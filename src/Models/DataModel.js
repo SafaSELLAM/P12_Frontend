@@ -48,11 +48,13 @@ export class DataModel {
      * @returns {Object} - The formatted key data with units ("kCal", "g").
      */
     formatKeyData(keyData) {
+        
+        const formatNumber = new Intl.NumberFormat('en-US');
         return {
-            calorieCount: keyData.calorieCount + ' kCal',
-            proteinCount: keyData.proteinCount + ' g',
-            carbohydrateCount: keyData.carbohydrateCount + ' g',
-            lipidCount: keyData.lipidCount + ' g',
+            calorieCount: formatNumber.format(keyData.calorieCount) + 'kCal',
+            proteinCount: keyData.proteinCount + 'g',
+            carbohydrateCount: keyData.carbohydrateCount + 'g',
+            lipidCount: keyData.lipidCount + 'g',
         };
     }
     /**
