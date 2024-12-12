@@ -1,4 +1,4 @@
-import { USER_MAIN_DATA, USER_ACTIVITY } from "./Mockdatas/mockdatas.js";
+import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS } from "./Mockdatas/mockdatas.js";
 import { DataModel } from "./Models/DataModel.js";
 
 /**
@@ -70,4 +70,22 @@ export const getUserActivity = async (userId) => {
     const activityData = USER_ACTIVITY.find(activity => activity.userId === userId);
     if (!activityData) throw new Error(`Activity for user id ${userId} not found.`);
     return new DataModel(activityData, 'activity');
+};
+
+/**
+ * Fetches user activity data by user ID from the API or mock data.
+ * 
+ * @async
+ * @function getUserAverageSessions
+ * @param {number} userId - The ID of the user to fetch activity data for.
+ * @returns {Promise<DataModel>} A promise that resolves to a `DataModel` object with average session data.
+ * @throws Will throw an error if it fails to fetch the data.
+ */
+export const getUserAverageSessions = async (userId) => {
+    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}/average-sessions`, 'averageSession');
+
+    console.log('Using average-sessions mock data');
+    const averageSessionData = USER_AVERAGE_SESSIONS.find(activity => activity.userId === userId);
+    if (!averageSessionData) throw new Error(`Average Session for user id ${userId} not found.`);
+    return new DataModel(averageSessionData, 'averageSession');
 };

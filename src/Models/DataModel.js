@@ -48,7 +48,7 @@ export class DataModel {
      * @returns {Object} - The formatted key data with units ("kCal", "g").
      */
     formatKeyData(keyData) {
-        
+
         const formatNumber = new Intl.NumberFormat('en-US');
         return {
             calorieCount: formatNumber.format(keyData.calorieCount) + 'kCal',
@@ -86,8 +86,19 @@ export class DataModel {
         return Math.floor(minKilogram);
     }
 
+    /**
+     * Reformats session data for Recharts usage.
+     * Converts day indices (1-7) to abbreviated day names (L, M, M, J, V, S, D).
+     *
+     * @param {Object} sessions - The sessions data fetched from the API.
+     * @returns {Array} Reformatted session data to change days number into days names.
+    */
     formatAverageSessions(sessions) {
-
+        const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
+        return sessions.map((session) => ({
+            day: days[session.day - 1],
+            sessionLength: session.sessionLength,
+        }))
     }
 
     formatPerformanceData(data, kind) {
