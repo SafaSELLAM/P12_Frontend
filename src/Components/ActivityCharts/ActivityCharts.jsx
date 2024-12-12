@@ -31,14 +31,14 @@ export const ActivityCharts = ({ userId }) => {
         fetchActivity();
     }, [userId])
 
-      /**
-     * Custom tooltip for displaying weight and calories burned when hovering over a bar.
-     *
-     * @param {Object} props - The tooltip properties.
-     * @param {boolean} props.active - Indicates if the tooltip is active.
-     * @param {Array<Object>} props.payload - The data payload for the tooltip.
-     * @returns {JSX.Element|null} A styled tooltip if active, or null otherwise.
-     */
+    /**
+   * Custom tooltip for displaying weight and calories burned when hovering over a bar.
+   *
+   * @param {Object} props - The tooltip properties.
+   * @param {boolean} props.active - Indicates if the tooltip is active.
+   * @param {Array<Object>} props.payload - The data payload for the tooltip.
+   * @returns {JSX.Element|null} A styled tooltip if active, or null otherwise.
+   */
     const CustomTooltip = ({ active, payload }) => {
         if (active) {
             return (

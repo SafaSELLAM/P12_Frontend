@@ -1,0 +1,21 @@
+.sessionChart {
+    border: 1px solid red;
+    width: 30%;
+}
+
+.sessionGraph {
+    width: 90%;
+}
+
+.customTooltip {
+    background: white;
+    padding: 5px 10px;
+    font-size: 8px;
+    height: 25px;
+    width: px;
+    text-align: center;
+}
+
+.sessionGraph {
+    width: 90%;
+}

@@ -1,4 +1,8 @@
 .contentDashboard {
     width: 95%;
+}
+
+.charts {
+    width: 100%;
     gap: 35px;
 }
