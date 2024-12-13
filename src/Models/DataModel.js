@@ -102,7 +102,24 @@ export class DataModel {
     }
 
     formatPerformanceData(data, kind) {
+        const translatedKind = {
+            1: 'Cardio',
+            2: 'Énergie',
+            3: 'Endurance',
+            4: 'Force',
+            5: 'Vitesse',
+            6: 'Intensité'
+        }
+        const formattedData = data.map(item => ({
+            subject: translatedKind[item.kind],
+            value: item.value
+        }));
 
+        const order = Object.values(translatedKind);
+
+        return formattedData.sort((a, b) => {
+            return order.indexOf(b.subject) - order.indexOf(a.subject);
+        });
     }
 }
 
