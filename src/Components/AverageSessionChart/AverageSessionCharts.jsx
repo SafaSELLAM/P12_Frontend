@@ -29,26 +29,29 @@ export const AverageSessionCharts = ({ userId }) => {
         }
         return null;
     };
+
     return (
-        <div className="sessionChart backPrimary">
-            <ResponsiveContainer width="100%" height={300}>
+        <div className="sessionChart">
+            <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={sessions}>
                     <XAxis
                         dataKey="day"
-                        tick={{ fill: '#fff' }}
+                        tick={{ fill: '#ffffff80' }}
                         tickLine={false}
                         axisLine={false}
                         padding={{ left: 30, right: 30 }}
+
                     />
                     <Tooltip content={CustomTooltip} />
                     <Line
                         type="monotone"
                         dataKey="sessionLength"
-                        stroke="#fff"
-                        strokeWidth={2}
+                        stroke="#ffffff80"
+                        strokeWidth={3}
                         dot={false}
-                        activeDot={{ r: 6, stroke: '#fff', strokeWidth: 2 }}
+                        activeDot={{ stroke: '#fff', strokeWidth: 2 }}
                     />
+
                 </LineChart>
             </ResponsiveContainer>
         </div>

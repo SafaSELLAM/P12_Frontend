@@ -1,6 +1,9 @@
 .sessionChart {
-    border: 1px solid red;
+    background-color: #ff0000;
     width: 30%;
+    height: 90%;
+    border-radius: 5px;
+    margin-bottom: 30px;
 }
 
 .sessionGraph {

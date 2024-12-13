@@ -2,6 +2,10 @@
     width: 95%;
 }
 
+.smallCharts {
+    gap: 20px;
+}
+
 .charts {
     width: 100%;
     gap: 35px;
