@@ -16,7 +16,7 @@ export class DataModel {
                 this.firstName = data.userInfos.firstName
                 this.lastName = data.userInfos.lastName
                 this.age = data.userInfos.age
-                this.score = data.score || data.todayScore
+                this.score = this.formatScore(data.score || data.todayScore)
                 this.keyData = this.formatKeyData(data.keyData || {});
                 break;
 
@@ -56,6 +56,15 @@ export class DataModel {
             carbohydrateCount: keyData.carbohydrateCount + 'g',
             lipidCount: keyData.lipidCount + 'g',
         };
+    }
+    /**
+   * Formats the score as a percentage.
+   * @function formatScore
+   * @param {number} score - The score from the API.
+   * @returns {number} - The formatted score in percentage.
+   */
+    formatScore(score) {
+        return Math.round(score * 100);
     }
     /**
      * Formats activity session data to include day, kilogram, and calories.
@@ -115,11 +124,7 @@ export class DataModel {
             value: item.value
         }));
 
-        const order = Object.values(translatedKind);
-
-        return formattedData.sort((a, b) => {
-            return order.indexOf(b.subject) - order.indexOf(a.subject);
-        });
+        return formattedData.reverse()
     }
 }
 
