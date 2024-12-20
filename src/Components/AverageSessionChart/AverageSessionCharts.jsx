@@ -42,16 +42,16 @@ export const AverageSessionCharts = ({ userId }) => {
     return (
         <div className="sessionChart">
             <ResponsiveContainer width="100%" height="100%" ref={refChartContainer} fill="#FF0D0D">
-                <LineChart data={sessions} onMouseMove={handleHover} margin={{ top: 0, right: 0, bottom: 10, left: 5 }}>
+                <LineChart data={sessions} onMouseMove={handleHover} margin={{ top: 0, right: 0, bottom: 10, left: 0 }}>
                     <text style={{
                         fill: '#ffffff80',
-                        fontSize: '16px',
+                        fontSize: '20',
                         fontWeight: 'bold',
                     }}>
-                        <tspan className="sessionChartTitle" x={30} y={35}>
+                        <tspan className="sessionChartTitle" x={20} y={55}>
                             Durée moyenne des
                         </tspan>
-                        <tspan className="sessionChartTitle" x={30} y={55}>
+                        <tspan className="sessionChartTitle" x={20} y={75}>
                             sessions
                         </tspan>
                     </text>
@@ -60,7 +60,7 @@ export const AverageSessionCharts = ({ userId }) => {
                         tick={{ fill: '#ffffff91' }}
                         tickLine={false}
                         axisLine={false}
-
+                        padding={{ right: 10, left: 10 }}
                     />
                     <YAxis domain={['dataMin-3', 'dataMax+20']} hide />
 
