@@ -64,7 +64,7 @@ export const ActivityCharts = ({ userId }) => {
                         y="0"
                         width="100%"
                         height="100%"
-                        fill="#f5f5f5"
+                        fill="#FBFBFB"
                     />
                     <text
                         x="15%"
