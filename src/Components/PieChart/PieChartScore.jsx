@@ -40,6 +40,14 @@ export const PieChartScore = ({ userId }) => {
                         Score
                     </text>
                     <Pie
+                        data={[{ value: 1 }]}
+                        dataKey="value"
+                        innerRadius={0}
+                        outerRadius={87}
+                        fill="#FFFFFF"
+                        isAnimationActive={false}
+                    />
+                    <Pie
                         data={data}
                         dataKey="value"
                         nameKey="name"
@@ -47,35 +55,29 @@ export const PieChartScore = ({ userId }) => {
                         outerRadius={87}
                         startAngle={90}
                         endAngle={450}
+
                     >
                         {data.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={COLORS[index]} />
                         ))}
                     </Pie>
-                    <text
-                        x="50%"
-                        y="50%"
-                        textAnchor="middle"
-                        fill="#20253A"
-                        fontSize="24"
-                        fontWeight="bold"
-                    >
-                        {score}%
-                    </text>
+
 
                     <text
                         x="50%"
-                        y="60%"
+                        y="40%"
                         textAnchor="middle"
-                        fill="#979aa9"
-                        fontSize="16"
                     >
-                        de votre objectif
+
+                        <tspan textAnchor="middle" fontSize="28" fontWeight="bold" x="50%" dy="5%">{score}% </tspan>
+                        <tspan textAnchor="middle" fontSize="20" fill="#979aa9" x="50%" dy="10%"> de votre</tspan>
+                        <tspan textAnchor="middle" fontSize="20" fill="#979aa9" x="50%" dy="10%"> objectif</tspan>
+
                     </text>
                 </PieChart>
             </ResponsiveContainer>
 
-        </div>
+        </div >
 
     )
 }
