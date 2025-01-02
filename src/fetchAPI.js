@@ -27,7 +27,9 @@ const fetchData = async (url, type) => {
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`Error HTTP ! Status : ${response.status}`);
-        const data = await response.json();
+        const result = await response.json();
+        const data = result.data || result;
+
         return new DataModel(data, type);
     } catch (error) {
         console.error(`Error while fetching ${type} data:`, error);
@@ -45,7 +47,10 @@ const fetchData = async (url, type) => {
  * @throws Will throw an error if it fails to fetch the data.
  */
 export const getUserById = async (userId) => {
-    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}`, 'user');
+    if (!SHOULD_USE_MOCK) {
+        console.log('Fetching user data from the real API...');
+        return fetchData(`${API_BASE_URL}/${userId}`, 'user');
+    }
 
     console.log('Using mock data');
     const userData = USER_MAIN_DATA.find(user => user.id === userId);
@@ -64,7 +69,10 @@ export const getUserById = async (userId) => {
  * @throws Will throw an error if it fails to fetch the data.
  */
 export const getUserActivity = async (userId) => {
-    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}/activity`, 'activity');
+    if (!SHOULD_USE_MOCK) {
+        console.log('Fetching activity data from the real API...');
+        return fetchData(`${API_BASE_URL}/${userId}/activity`, 'activity');
+    }
 
     console.log('Using activity mock data');
     const activityData = USER_ACTIVITY.find(activity => activity.userId === userId);
@@ -82,7 +90,10 @@ export const getUserActivity = async (userId) => {
  * @throws Will throw an error if it fails to fetch the data.
  */
 export const getUserAverageSessions = async (userId) => {
-    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}/average-sessions`, 'averageSession');
+    if (!SHOULD_USE_MOCK) {
+        console.log('Fetching sessions data from the real API...');
+        return fetchData(`${API_BASE_URL}/${userId}/average-sessions`, 'averageSession');
+    }
 
     console.log('Using average-sessions mock data');
     const averageSessionData = USER_AVERAGE_SESSIONS.find(activity => activity.userId === userId);
@@ -100,9 +111,12 @@ export const getUserAverageSessions = async (userId) => {
  * @throws Will throw an error if it fails to fetch the data.
  */
 export const getUserPerformance = async (userId) => {
-    if (!SHOULD_USE_MOCK) return fetchData(`${API_BASE_URL}/${userId}/performance`, 'performance');
+    if (!SHOULD_USE_MOCK) {
+        console.log('Fetching performance data from the real API...');
+        return fetchData(`${API_BASE_URL}/${userId}/performance`, 'performance');
+    }
 
-    console.log('Using average-sessions mock data');
+    console.log('Using performance mock data');
     const performanceData = USER_PERFORMANCE.find(performance => performance.userId === userId);
     if (!performanceData) throw new Error(`Performance for user id ${userId} not found.`);
     return new DataModel(performanceData, 'performance');
