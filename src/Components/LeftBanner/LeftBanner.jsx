@@ -12,7 +12,7 @@ const icons = [
 ];
 
 export const LeftBanner = () => (
-    <div className="leftBanner center backSecondary">
+    <div className="leftBanner center backSecondary column around">
         <div className="column around iconContainer">
             {icons.map((icon, index) => (
                 <img
@@ -23,5 +23,6 @@ export const LeftBanner = () => (
                 />
             ))}
         </div>
+        <p className="textLeftbanner colorTertiary ">Copyright, Sportsee 2020</p>
     </div>
 );

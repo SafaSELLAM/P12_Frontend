@@ -9,3 +9,9 @@
 .activityIcone {
     border-radius: 6px;
 }
+
+.textLeftbanner {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 12px;
+}

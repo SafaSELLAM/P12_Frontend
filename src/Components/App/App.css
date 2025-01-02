@@ -108,7 +108,9 @@ p {
 body {
     margin: 0;
     min-width: 1024px;
+    max-width: 2560px;
     min-height: 780px;
+    max-height: 1177px;
     font-family: "Roboto", sans-serif;
     font-style: normal;
 }
