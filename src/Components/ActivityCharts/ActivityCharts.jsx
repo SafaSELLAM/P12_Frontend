@@ -30,7 +30,8 @@ export const ActivityCharts = ({ userId }) => {
         }
         fetchActivity();
     }, [userId])
-
+    if (!activityData) return <p>Loading Activity...</p>;
+    if (!minKilogram) return <p>Loading Kilogram...</p>;
     /**
    * Custom tooltip for displaying weight and calories burned when hovering over a bar.
    *

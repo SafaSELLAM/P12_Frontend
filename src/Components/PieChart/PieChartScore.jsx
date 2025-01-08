@@ -3,9 +3,19 @@ import { getUserById } from '../../fetchAPI';
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import './piechartscore.css'
 
+/**
+ * A functional component that displays a pie chart representing the user's score as a percentage of their goal.
+ * It fetches the user's score from an API and visualizes it in the chart.
+ * 
+ * @param {Object} props - The properties passed to the component.
+ * @param {string|number} props.userId - The ID of the user whose score data is displayed in the pie chart.
+ * 
+ * @returns {JSX.Element} The rendered JSX for the pie chart, including score visualization and textual information.
+ */
 
 export const PieChartScore = ({ userId }) => {
     const [score, setScore] = useState(0)
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         const fetchScores = async () => {
@@ -18,11 +28,27 @@ export const PieChartScore = ({ userId }) => {
         };
 
         fetchScores();
+        const handleResize = () => {
+            setScreenWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
     }, [userId]);
+
+    if (!score) return <p>Loading...</p>;
+
     const data = [
         { name: 'Score', value: score },
         { name: 'Restant', value: 100 - score }
     ];
+
+    const innerRadius = screenWidth >= 1024 && screenWidth <= 1200 ? 52 : 74;
+    const outerRadius = screenWidth >= 1024 && screenWidth <= 1200 ? 60 : 87;
+    const titleFont = screenWidth >= 1024 && screenWidth <= 1200 ? 18 : 20;
 
     const COLORS = ['#FF0000', '#FBFBFB'];
     return (
@@ -34,7 +60,7 @@ export const PieChartScore = ({ userId }) => {
                         y="20%"
                         textAnchor="middle"
                         fill="#20253A"
-                        fontSize="18"
+                        fontSize={titleFont}
                         fontWeight="bold"
                     >
                         Score
@@ -43,7 +69,7 @@ export const PieChartScore = ({ userId }) => {
                         data={[{ value: 1 }]}
                         dataKey="value"
                         innerRadius={0}
-                        outerRadius={87}
+                        outerRadius={outerRadius}
                         fill="#FFFFFF"
                         isAnimationActive={false}
                     />
@@ -51,8 +77,8 @@ export const PieChartScore = ({ userId }) => {
                         data={data}
                         dataKey="value"
                         nameKey="name"
-                        innerRadius={74}
-                        outerRadius={87}
+                        innerRadius={innerRadius}
+                        outerRadius={outerRadius}
                         startAngle={90}
                         endAngle={450}
 
