@@ -10,7 +10,11 @@ const icons = [
     { src: bike, alt: "bike icon" },
     { src: weight, alt: "weight icon" }
 ];
-
+/**
+ * A functional component that renders a left banner with icons representing various activities (meditation, swimming, biking, and weight training).
+ * 
+ * @returns {JSX.Element} The rendered JSX for the left banner, including activity icons and a copyright text.
+ */
 export const LeftBanner = () => (
     <div className="leftBanner center backSecondary column around">
         <div className="column around iconContainer">

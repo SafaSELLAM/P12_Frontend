@@ -1,3 +1,31 @@
+/**
+ * This file contains mock data for users, their activities, average session lengths, and performance statistics.
+ * The data is structured for two users with user IDs 12 and 18.
+ * 
+ * The data includes:
+ * - `USER_MAIN_DATA`: Basic information about the users, including their name, age, today's score, and key data (calories, proteins, carbohydrates, and lipids).
+ * - `USER_ACTIVITY`: Daily activity data for users, including their weight (kilogram) and calorie consumption for each day.
+ * - `USER_AVERAGE_SESSIONS`: The average session length in minutes for each user across a 7-day period.
+ * - `USER_PERFORMANCE`: Performance data for users, including various metrics such as cardio, energy, endurance, strength, speed, and intensity.
+ * 
+ * @module mockData
+ */
+
+/**
+ * Array containing main data for users.
+ * @type {Array<Object>}
+ * @property {number} id - The unique identifier of the user.
+ * @property {Object} userInfos - The user's personal information.
+ * @property {string} userInfos.firstName - The user's first name.
+ * @property {string} userInfos.lastName - The user's last name.
+ * @property {number} userInfos.age - The user's age.
+ * @property {number} todayScore - The user's score for today.
+ * @property {Object} keyData - The user's key data (e.g., calories, proteins, carbohydrates, and lipids).
+ * @property {number} keyData.calorieCount - The user's daily calorie count.
+ * @property {number} keyData.proteinCount - The user's daily protein count.
+ * @property {number} keyData.carbohydrateCount - The user's daily carbohydrate count.
+ * @property {number} keyData.lipidCount - The user's daily lipid count.
+ */
 export const USER_MAIN_DATA = [
     {
         id: 12,
@@ -30,7 +58,15 @@ export const USER_MAIN_DATA = [
         }
     }
 ]
-
+/**
+ * Array containing activity data for users.
+ * @type {Array<Object>}
+ * @property {number} userId - The unique identifier of the user.
+ * @property {Array<Object>} sessions - An array of activity sessions for the user.
+ * @property {string} sessions.day - The day of the session (YYYY-MM-DD format).
+ * @property {number} sessions.kilogram - The user's weight on that day (in kilograms).
+ * @property {number} sessions.calories - The number of calories consumed on that day.
+ */
 export const USER_ACTIVITY = [
     {
         userId: 12,
@@ -113,7 +149,14 @@ export const USER_ACTIVITY = [
         ]
     }
 ]
-
+/**
+ * Array containing the average session length for users.
+ * @type {Array<Object>}
+ * @property {number} userId - The unique identifier of the user.
+ * @property {Array<Object>} sessions - An array of sessions for the user.
+ * @property {number} sessions.day - The day of the session (1-7).
+ * @property {number} sessions.sessionLength - The session length in minutes for that day.
+ */
 
 export const USER_AVERAGE_SESSIONS = [
     {
@@ -183,7 +226,16 @@ export const USER_AVERAGE_SESSIONS = [
         ]
     }
 ]
-
+/**
+ * Array containing performance data for users.
+ * @type {Array<Object>}
+ * @property {number} userId - The unique identifier of the user.
+ * @property {Object} kind - The categories of performance data.
+ * @property {string} kind.[key] - A performance category (e.g., 'cardio', 'strength').
+ * @property {Array<Object>} data - The performance data for the user.
+ * @property {number} data.value - The performance value for that category.
+ * @property {number} data.kind - The identifier of the performance category.
+ */
 
 export const USER_PERFORMANCE = [
     {

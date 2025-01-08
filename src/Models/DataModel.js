@@ -7,6 +7,13 @@
  * @param {'user' | 'activity' | 'averageSession' | 'performance'} type - The type of data to be standardized.
  */
 export class DataModel {
+    /**
+    * Creates an instance of the DataModel class.
+    * 
+    * @constructor
+    * @param {Object} data - The raw data object fetched from the API or mockData.
+    * @param {'user' | 'activity' | 'averageSession' | 'performance'} type - The type of data to be standardized.
+    */
     constructor(data, type) {
         this.type = type;
 
@@ -109,7 +116,14 @@ export class DataModel {
             sessionLength: session.sessionLength,
         }))
     }
-
+    /**
+     * Formats the performance data, translating the kind of performance to a human-readable format.
+     * 
+     * @function formatPerformanceData
+     * @param {Array<Object>} data - The performance data fetched from the API.
+     * @param {Object} kind - An object mapping performance kind IDs to names.
+     * @returns {Array<Object>} - The formatted performance data.
+     */
     formatPerformanceData(data, kind) {
         const translatedKind = {
             1: 'Cardio',
