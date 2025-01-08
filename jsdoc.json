@@ -1,0 +1,11 @@
+{
+    "source": {
+      "include": ["src"],          
+      "exclude": ["src/assets"]
+    },
+    "opts": {
+      "destination": "./jsdoc",  
+      "recurse": true            
+    }
+  }
+  
