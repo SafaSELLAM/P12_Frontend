@@ -3,3 +3,9 @@
     width: 100%;
     gap: 55px
 }
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    .dashboardContent {
+        padding: 46px 0px 0px 20px;
+    }
+}
